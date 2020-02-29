@@ -2,6 +2,7 @@ import pkg from '../package.json'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
+import vue from 'rollup-plugin-vue'
 import { terser } from 'rollup-plugin-terser'
 const isProduction = process.env.NODE_ENV === 'production'
 export default {
@@ -13,10 +14,11 @@ export default {
       runtimeHelpers: true,
       exclude: 'node_modules/**'
     }),
-    isProduction && terser()
+    isProduction && terser(),
+    vue()
   ],
   external(id) {
     // 对babel-runtime corejs等进行external
-    return /^@babel|core-js/.test(id)
+    return /^@babel|core-js|vue/.test(id)
   }
 }
