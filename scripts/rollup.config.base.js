@@ -19,6 +19,6 @@ export default {
   ],
   external(id) {
     // 对babel-runtime corejs等进行external
-    return /^@babel|core-js|vue/.test(id)
+    return /^@babel|core-js/.test(id) || id === 'vue'
   }
 }
