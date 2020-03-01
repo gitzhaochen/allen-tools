@@ -1,12 +1,12 @@
 import base from './rollup.config.base.js'
 import pkg from '../package.json'
 import path from 'path'
-path.join(process.cwd(), './packages/vueLib')
+path.join(process.cwd(), './packages/zgVueLib')
 import { getDirsByPath } from './utils'
 //所有packages下面的一级目录
 const dirsPaths = getDirsByPath(path.join(process.cwd(), './packages'))
-//vueLib下面的目录
-const vueDirsPaths = getDirsByPath(path.join(process.cwd(), './packages/vueLib')).map(dirPath => `vueLib/${dirPath}`)
+//zgVueLib下面的目录
+const vueDirsPaths = getDirsByPath(path.join(process.cwd(), './packages/zgVueLib')).map(dirPath => `zgVueLib/${dirPath}`)
 
 const allPaths = ['entry', ...dirsPaths, ...vueDirsPaths]
 
