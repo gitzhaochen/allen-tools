@@ -1,6 +1,12 @@
+//js 组件
 import treelog from './treelog/index.js'
-import zgLogo from './zgLogo/index.js'
-import zgInput from './zgInput/index.js'
 import windowScaleTip from './windowScaleTip/index.js'
 
-export { windowScaleTip, treelog, zgLogo, zgInput }
+//vue 组件
+import vueLibTools from './vueLib/index.js'
+
+
+
+// 输出default变量，用于全量引入
+export default { treelog, windowScaleTip, vueLibTools }
+export { treelog, windowScaleTip, vueLibTools }

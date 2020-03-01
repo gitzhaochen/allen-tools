@@ -1,15 +1,24 @@
 import base from './rollup.config.base.js'
 import pkg from '../package.json'
+import path from 'path'
+path.join(process.cwd(), './packages/vueLib')
+import { getDirsByPath } from './utils'
+//所有packages下面的一级目录
+const dirsPaths = getDirsByPath(path.join(process.cwd(), './packages'))
+//vueLib下面的目录
+const vueDirsPaths = getDirsByPath(path.join(process.cwd(), './packages/vueLib')).map(dirPath => `vueLib/${dirPath}`)
 
-const config = [
-  Object.assign({}, base, {
-    input: `./packages/index.js`,
+const allPaths = ['entry', ...dirsPaths, ...vueDirsPaths]
+
+const config = allPaths.map(dir => {
+  return Object.assign({}, base, {
+    input: dir === 'entry' ? `./packages/index.js` : `./packages/${dir}/index.js`,
     output: {
-      file: pkg.main,
+      file: dir === 'entry' ? pkg.main : `./dist/umd/${dir}/index.js`,
       format: 'umd',
-      name: 'ZgTools' //包输出的全局变量名称
+      name: dir.replace('/', '_') === 'entry' ? 'ZgTools' : `ZgTools_${dir}`
     }
   })
-]
+})
 
 export default config

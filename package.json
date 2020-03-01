@@ -1,6 +1,6 @@
 {
   "name": "allen-tools",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "",
   "module": "dist/esm/index.js",
   "main": "dist/umd/index.js",
@@ -37,7 +37,6 @@
     "rollup-plugin-postcss": "^2.1.1",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-vue": "^5.1.6",
-    "rollup-plugin-vue2": "^0.8.1",
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11"
   },
