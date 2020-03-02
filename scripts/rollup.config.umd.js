@@ -5,10 +5,8 @@ path.join(process.cwd(), './packages/zgVueLib')
 import { getDirsByPath } from './utils'
 //所有packages下面的一级目录
 const dirsPaths = getDirsByPath(path.join(process.cwd(), './packages'))
-//zgVueLib下面的目录
-const vueDirsPaths = getDirsByPath(path.join(process.cwd(), './packages/zgVueLib')).map(dirPath => `zgVueLib/${dirPath}`)
 
-const allPaths = ['entry', ...dirsPaths, ...vueDirsPaths]
+const allPaths = ['entry', ...dirsPaths]
 
 const config = allPaths.map(dir => {
   return Object.assign({}, base, {
@@ -16,7 +14,7 @@ const config = allPaths.map(dir => {
     output: {
       file: dir === 'entry' ? pkg.main : `./dist/umd/${dir}/index.js`,
       format: 'umd',
-      name: dir.replace('/', '_') === 'entry' ? 'ZgTools' : `ZgTools_${dir}`
+      name: dir === 'entry' ? 'ZgTools' : `ZgTools_${dir}`
     }
   })
 })
